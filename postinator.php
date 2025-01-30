@@ -29,3 +29,21 @@ function postinator_init() {
     }
 }
 add_action('plugins_loaded', 'postinator_init');
+
+/**
+ * Enqueue Postinator styles.
+ */
+function postinator_enqueue_styles() {
+    // Check if we are in the admin area
+    if (is_admin()) {
+        // Load the CSS file from assets/css/postinator.css
+        wp_enqueue_style(
+            'postinator-styles', // Handle name
+            plugin_dir_url(__FILE__) . 'assets/css/postinator.css', // Path to CSS file
+            [], // Dependencies
+            '1.0', // Version of the CSS
+            'all' // Media type
+        );
+    }
+}
+add_action('admin_enqueue_scripts', 'postinator_enqueue_styles');

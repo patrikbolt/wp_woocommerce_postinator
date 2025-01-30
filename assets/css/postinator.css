@@ -1,0 +1,11 @@
+.postinator-widget {
+    border: 1px solid #ffe58f; /* Gelbe Umrandung */
+    background: #fffbe6; /* Hellgelber Hintergrund */
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.postinator-widget h2 {
+    color: #d48806; /* Dunkelgelbe Überschrift */
+}

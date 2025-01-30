@@ -11,16 +11,21 @@ if (!defined('ABSPATH')) {
     exit; // Prevent direct access
 }
 
-// Require the files that contain your classes
+// Require your class files
 require_once plugin_dir_path(__FILE__) . 'inc/class-postinator-settings.php';
 require_once plugin_dir_path(__FILE__) . 'inc/class-postinator-orders.php';
+require_once plugin_dir_path(__FILE__) . 'inc/class-postinator-widget.php'; // Postinator Widget einbinden
 
 /**
  * Initialize the plugin.
- * This function creates instances of the classes that handle settings and orders.
  */
 function postinator_init() {
-    new Postinator_Settings();
-    new Postinator_Orders();
+    Postinator_Settings::get_instance();
+
+    // Initialisiere Postinator-Objekte nur im Admin-Bereich
+    if (is_admin()) {
+        Postinator_Orders::get_instance();
+        Postinator_Widget::get_instance(); // Initialisiere das Widget
+    }
 }
 add_action('plugins_loaded', 'postinator_init');
